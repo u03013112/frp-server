@@ -1,19 +1,10 @@
-version: '3.2'
+version: '2'
+
 services:
-  ddns:
-    image: timothyye/godns:latest
-    container_name: 'ddns'
-    restart: always
-    volumes:
-      - ./ddns.json:/usr/local/godns/config.json
-    tty: true
   frps:
-    image: yangliu/frps:latest
-    container_name: 'frps'
+    image: snowdreamtech/frps
+    container_name: frps
+    network_mode: host
     restart: always
     volumes:
-      - ./frps.ini:/conf/frps.ini
-    tty: true
-    ports:
-      - 7000:7000
-      - 18000-18020:18000-18020
+      - ./frps.ini:/etc/frp/frps.ini
